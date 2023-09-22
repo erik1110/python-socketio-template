@@ -13,3 +13,4 @@ This is an interactive game template by using the fastapi-socket package:
 
 (6) When the host presses "play," the game begins.
 
+![0ix56-2qm2h](https://github.com/erik1110/python-socketio-template/assets/40282726/8a11c178-3663-43c8-9c4e-6ddf971dde0f)
