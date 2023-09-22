@@ -1,13 +1,6 @@
-from typing import Optional
-
 from beanie import init_beanie
 from motor.motor_asyncio import AsyncIOMotorClient
-from pydantic import BaseSettings
-
 from app.models.room import Room
-
-from urllib.parse import quote_plus
-
 from rich.console import Console
 import os
 
