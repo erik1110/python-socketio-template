@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUEST</title>
+</head>
+<body>
+    <label for="roomID">ROOM ID：</label>
+    <input type="text" id="roomID" style="width: 200px">
+    <button type="button" onclick="joinRoom()">Add the Room</button>
+    <h3>response</h3>
+    <textarea id="id2" style="width: 300px; height: 300px"></textarea>
+    <h3>msg</h3>
+    <textarea id="id3" style="width: 300px; height: 300px"></textarea>
+    <br>
+    <br>
+    <button type="button" onclick="ready()">I am Ready</button>
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script>
+        const socket = io('ws://localhost:8000/chat', { transports: ["websocket"]});
+        socket.on("sys", function (data) {
+            $('#id2').val($('#id2').val() + '\n' + data)
+        });
+        socket.on("msg", function (data) {
+            $('#id3').val($('#id3').val() + '\n' + data)
+        });
+    </script>
+    <script>
+        function joinRoom() {
+            const roomID = document.getElementById("roomID").value;
+            socket.emit("join", roomID);
+    }
+    </script>
+    <script>
+        function ready() {
+            socket.emit("msg", "new_guest");
+    }
+    </script>
+</body>
+</html>
